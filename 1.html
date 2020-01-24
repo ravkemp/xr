@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Hello, WebVR! • A-Frame</title>
+
+    <meta name="description" content="Hello, WebVR! • A-Frame">
+
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+
+  </head>
+
+  <body>
+    
+    <a-scene background="color: #423E3D">
+
+      <a-assets>
+        <a-mixin id="teleport" teleport-controls="type: parabolic; button: trigger; cameraRig: #cameraRig; defaultPlaneSize: 1000; "></a-mixin>
+        <img id="boxTexture" src="textures/8.jpg">
+        <img id="gndTexture" src="textures/6.jpg">
+        <img id="skyTexture" src="textures/sky2.jpg">
+      </a-assets>
+
+      <a-plane src="#boxTexture" position="0 0 -4" scale="10 10 0.00001" rotation="-90 0 0" width="4" height="4"></a-plane>
+      <a-sphere src="#gndTexture"  position="0 1.25 -5" radius="1.25" shadow></a-sphere>
+      <a-entity geometry="primitive: cylinder; height: 3; radius: 2"></a-entity>
+      <a-sky src="#skyTexture"></a-sky>
+
+      <a-entity id="cameraRig" position="0 0.1 0">
+        <a-entity camera wasd-controls look-controls></a-entity>
+        <a-entity id="rightHand" mixin="teleport" laser-controls="hand: right" vive-controls="hand: right" oculus-go-controls="hand: right"></a-entity>
+        <a-entity id="leftHand" mixin="teleport" laser-controls="hand: left" vive-controls="hand: left" oculus-go-controls="hand: left"></a-entity>
+     </a-entity>
+
+
+
+    </a-scene>
+  </body>
+</html>
